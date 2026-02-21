@@ -674,6 +674,53 @@ button {
   }
 }
 
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-word {
+  display: inline-block;
+  animation: slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* CTA arrow animation */
+@keyframes arrowMove {
+  0% {
+    transform: translateX(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(6px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0.9;
+  }
+}
+
+.cta-arrow {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.cta-arrow svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  color: #fff;
+  transform-origin: center;
+  animation: arrowMove 1.1s ease-in-out infinite;
+}
+
 @media (max-width: 1080px) {
   .platform-layout {
     grid-template-columns: 1fr;

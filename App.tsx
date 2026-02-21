@@ -1,4 +1,5 @@
 import './index.css';
+import React, { useState, useEffect } from 'react';
 
 const features = [
   {
@@ -110,6 +111,29 @@ const outcomes = [
   },
 ];
 
+function AnimatedHeadline() {
+  const words = ["Accountability", "Transparency", "Trust", "Security"];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      <h1 className="reveal delay-1">
+        <div className="mb-2">End Paperwork. Stop Fraud.</div>
+        <div>
+          Build <span key={words[index]} className="animate-word" style={{ color: '#93c5fd' }}>{words[index]}</span>
+        </div>
+      </h1>
+    </>
+  );
+}
+
 export default function App() {
   return (
     <div className="page">
@@ -133,7 +157,7 @@ export default function App() {
               <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.627l-5.1-6.658-5.712 6.658H2.562l7.746-8.973L1.54 2.25h6.798l4.882 6.268L18.244 2.25zM17.474 20.451h1.829L6.75 3.75H4.823l12.651 16.701z" /></svg>
             </a>
           </div>
-          <button className="btn ghost login-outline">Member Login</button>
+          <button className="btn ghost login-outline">Login</button>
         </div>
       </header>
 
@@ -141,16 +165,23 @@ export default function App() {
         <section className="hero">
           <div className="hero-text">
             <div className="pill reveal">Digital-first SACCO management system</div>
-            <h1 className="reveal delay-1">
-              Transform cooperative finance into a modern, transparent member experience.
-            </h1>
+            {/* Animated responsive headline */}
+            <AnimatedHeadline />
             <p className="reveal delay-2">
               SaccoFlow replaces fragmented records with a single digital flow for members,
               loans, savings, and compliance. Move faster, reduce risk, and give members
               instant visibility into their financial future.
             </p>
             <div className="hero-actions reveal delay-3">
-              <a href="https://wa.me/+256758435163" target="_blank" rel="noopener noreferrer" className="btn primary">Book your free consultation</a>
+              <a href="https://wa.me/+256758435163" target="_blank" rel="noopener noreferrer" className="btn primary">
+                Book your free consultation
+                <span className="cta-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M5 12h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </a>
             </div>
             <div className="hero-trust reveal delay-4">
               <span>Designed for low-bandwidth environments</span>
